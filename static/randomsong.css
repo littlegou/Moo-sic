@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+* {
+    margin: 0;
+    padding: 0 ;
+    box-sizing: border-box;
+    font-family: "Itim", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+body {
+    background-color: #FFFF92;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 500px;
+        height: 70px;
+        flex-shrink: 0;
+        border-radius: 25px;
+        background: #FFA6A6;
+        color: white;
+    }
+}
+
+.song{
+    align-items: center;
+    justify-content: center;
+    width: 584px;
+    height: 452px;
+    flex-shrink: 0;
+    background-color: #FFA6A6;
+}
+
+.imagebtn {
+    background-image: url(../images/heart.png);
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #FFFF92;
+    
+}
+
+.nextbtn {
+    background-image: url(../images/next.png);
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #FFFF92;
+    float: right;
+}
+
+section {
+    .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .name {
+        h3 {
+            justify-content: center;
+            align-items: center;
+            color: #FFF;
+            }
+    }
+    .randomagain {
+        a {
+            margin: 20px;
+            text-decoration: none;
+            color: white;
+            display: inline-flex;
+            padding: 13px 63px 13px 62px;
+            justify-content: center;
+            align-items: center;
+            background-color: #FFA6A6;
+            text-decoration: none;
+            border-radius: 25px;
+        }
+    }
+    
+    .moodagain {
+        a {
+            background: #FFA6A6;
+            text-decoration: none;
+            color: white;
+            display: inline-flex;
+            padding: 13px 63px 13px 62px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 25px;
+        }
+    }
+}
+
+
