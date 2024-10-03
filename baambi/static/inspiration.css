@@ -3,7 +3,7 @@
     font-family:"Itim", cursive;
     font-weight: 400;
     font-style: normal;
-    background-color: #FFE605;
+    background-color: #9747FF;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -30,13 +30,15 @@ header {
     }
 
     .item h1 {
-        color:#FFF;
+        color:#9747FF;
         font-family: Itim;
         font-size: 100px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
         letter-spacing: 10px;
+        -webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: #fff;
     }
 }
 
@@ -48,7 +50,7 @@ header {
 
     a {
         font-size:30px;
-        color: #FFE605;
+        color:#9747FF;
         text-decoration: none;
         display: flex;
         width: 500px;
