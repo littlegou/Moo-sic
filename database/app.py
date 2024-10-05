@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
-from database.DB import get_db_connection
+from DB import get_db_connection
 import os
 connection = get_db_connection()
 
