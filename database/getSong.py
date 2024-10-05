@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from DB import get_db_connection
-import pymysql
 import os
-pymysql.install_as_MySQLdb()
 connection = get_db_connection()
 
 template_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'templates')
