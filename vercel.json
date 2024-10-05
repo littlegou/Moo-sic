@@ -2,12 +2,12 @@
     "version": 2,
     "builds": [
       {
-        "src": "database/getSong.py",
+        "src": "database/app.py",
         "use": "@vercel/python"
       }
     ],
     "routes": [
-      { "src": "/(.*)", "dest": "database/getSong.py" }
+      { "src": "/(.*)", "dest": "database/app.py" }
     ]
   }
   
