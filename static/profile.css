@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+* {
+    font-family:"Itim", cursive;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #F8E3A1;
+}
+header{
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    padding-top: 0;
+    margin-top: 30px;
+    padding-left: 50px;
+    gap: 50px;
+    .mooyoungimg{
+        display: flex;
+        align-items: center;
+        /* background-color: aquamarine;
+        border-radius: 25px; */
+        img{
+            height: 250px;
+            width: 250px;
+            object-fit: cover;
+            background-color: #D9D9D9;
+            border-radius: 100%;
+            border: 1px solid black;
+        }
+    }
+    .name{
+        display: flex;
+        text-align: center;
+        align-items: center;
+        font-size: 50px;
+    }
+    p {
+        background-color: #FFA6A6;
+        border-radius: 25px;
+        padding: 20px;
+        color: white;
+    }
+}
+section{
+    display: flex;
+    margin-left: 50px;
+    p {
+        background-color: #FFA6A6;
+        border-radius: 25px;
+        padding: 20px;
+        color: white;
+        font-size: 30px;
+    }
+}
+
+.container {
+    margin-top: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
+    li {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        p {
+            background-color: #FFA6A6;
+            border-radius: 25px;
+            padding: 18px;
+            color: white;
+            font-size: 20px;
+        }
+        img {
+            width: 50px;
+        }
+    }
+}
