@@ -6,7 +6,7 @@
     background-position: center;
     height: 100vh;
 }
-moosic-name{
+.btn {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -30,7 +30,14 @@ moosic-name{
     top: 630px;
     left: 478px;
     position: absolute;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
+.btn:hover {
+    background-color: #9CE391;
+    transform: scale(1.05);
+}
+
 a {
     color: #FFF;
     text-decoration: none;

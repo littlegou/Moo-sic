@@ -2,7 +2,7 @@
 
 * {
     margin: 0;
-    padding: 0 ;
+    padding: 0;
     box-sizing: border-box;
     font-family: "Itim", cursive;
     font-weight: 400;
@@ -10,9 +10,6 @@
 }
 
 body {
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
     background: rgb(179, 244, 255);
 }
 
@@ -21,6 +18,7 @@ header {
     justify-content: center;
     width: 100%;
     padding: 20px;
+    padding-top: 3rem;
 }
 
 .logo {
@@ -31,8 +29,6 @@ header {
     background: #FFA6A6;
     justify-items: center;
     text-align: center;
-    top: 30px;
-    left: 515px;
 }
 
 h1 {
@@ -40,14 +36,13 @@ h1 {
     font-size: 50px;
 }
 
-
-
 .container {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
-    margin: 20x 10px;
+    /* margin: 20px 10px; */
+    margin-top: 30px;
 }
 
 .wrapper {
@@ -93,22 +88,22 @@ h1 {
     color: #FFA6A6;
 }
 
-.input-box i{
+/* .input-box i{
     position: absolute;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 20px;
-}
+} */
 
-.wrapper .remember-forgot {
+/* .wrapper .remember-forgot {
     display: flex;
     justify-content: space-between;
     font-size: 14.5px;
     margin: -15px 0 15px;
-}
+} */
 
-.remember-forgot label input {
+/* .remember-forgot label input {
     accent-color: white;
     margin-right: 3px;
 }
@@ -120,7 +115,7 @@ h1 {
 
 .remember-forgot a:hover{
     text-decoration: underline;
-}
+} */
 
 .wrapper .btn {
     width: 100%;
