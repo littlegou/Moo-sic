@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from DB import get_db_connection
 import os
+import re
 connection = get_db_connection()
 
 template_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'templates')
@@ -19,35 +20,53 @@ def signup():
         username = cursor.fetchall()
     return render_template('signup.html', username=username)
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods =['GET', 'POST'])
 def login():
-    if request.method == 'POST':
+    mesage = ''
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
-
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM username WHERE username = %s AND password = %s", (username, password))
-            user = cursor.fetchone()
-
+        cursor = connection.cursor(dictionary=True)
+        cursor.execute('SELECT * FROM username WHERE username = % s AND password = % s', (username, password, ))
+        user = cursor.fetchone()
+        cursor.close()
         if user:
-            session['username'] = username
-            return redirect(url_for('select_mood'))
+            session['loggedin'] = True
+            session['username'] = user['username']
+            session['password'] = user['password']
+            mesage = 'Logged in successfully !'
+            return render_template('select_mood.html', mesage = mesage)
         else:
-            flash('Invalid username or password.')
-    return render_template('login.html')
+            mesage = 'Please enter correct username / password !'
+    return render_template('login.html', mesage = mesage)
 
-@app.route('/sign_up', methods=['POST'])
+@app.route('/sign_up', methods =['GET', 'POST'])
 def sign_up():
-    if request.method == 'POST':
+    mesage = ''
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form :
         username = request.form['username']
-        email = request.form['email']
         password = request.form['password']
-
-        with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO username (username, email, password) VALUES (%s, %s, %s)", (username, email,password))
+        email = request.form['email']
+        cursor = connection.cursor(dictionary=True)
+        cursor.execute('SELECT * FROM usernane WHERE email = % s', (email, ))
+        account = cursor.fetchone()
+        if account:
+            mesage = 'Account already exists !'
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            mesage = 'Invalid email address !'
+        elif not username or not password or not email:
+            mesage = 'Please fill out the form !'
+        elif password == username:
+            mesage = 'Please fill out the form !'
+        elif len(password) < 8:
+            mesage = 'Please fill you password more than 8 letters !'
+        else:
+            cursor.execute('INSERT INTO username (username, email, password) VALUES (% s, % s, % s)', (username, email, password))
             connection.commit()
-
-        return redirect(url_for('signup'))
+            mesage = 'You have successfully registered !'
+    elif request.method == 'POST':
+        mesage = 'Please fill out the form !'
+    return render_template('signup.html', mesage = mesage)
 
 @app.route('/select_mood')
 def select_mood():
@@ -90,8 +109,10 @@ def song():
 
 @app.route('/logout')
 def logout():
-    session.pop('username', None)
-    return redirect(url_for('login'))
+    session.pop('loggedin', None)
+    session.pop('usename', None)
+    session.pop('password', None)
+    return redirect(url_for('main'))
 
 if __name__ == '__main__':
     app.run(debug=True)
