@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width,
     initial-scale=1.0">
     <link rel="stylesheet" href="../static/randomsong.css">
+    <script>
+        function refreshPage() {
+            location.reload();
+        }
+    </script>
 </head>
 
 <body>
@@ -18,7 +23,6 @@
 
     <div class="container">
         <div class="song">
-            <!-- ทดลองใส่ iframe เพลง แต่ผมไม่รู้ว่า backend จะทำยังไงนะ TT -->
             {{ songs[0][2]|safe }}
         </div>
     </div>
@@ -34,7 +38,7 @@
 
         <div class="row">
             <div class="randomagain">
-                <a href="{{ url_for('randomsong') }}">สุ่มใหม่</a>
+                <a onclick="refreshPage()">สุ่มใหม่</a>
             </div>
             <div class="moodagain">
                 <a href="{{ url_for('select_mood') }}">เลือก mood อีกครั้ง</a>
