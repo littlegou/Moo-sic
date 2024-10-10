@@ -12,43 +12,40 @@
 </head>
 <html>
 
-    
+
 <body>
     <header>
         <div class="logo">
             <h1>Sign Up</h1>
-        </div> 
+        </div>
     </header>
     <div class="container">
         <div class="wrapper">
             <form action="">
-            {% if mesage is defined and mesage %}
-                    <div class="alert alert-warning">{{ mesage }}</div>
+                {% if mesage is defined and mesage %}
+                <div class="alert alert-warning">{{ mesage }}</div>
                 {% endif %}
                 <div class="input-box">
-                    <input type="email" id="email" name="email" placeholder="email" required>
+                    <input type="email" name="email" placeholder="Email" required>
                     <box-icon type='solid' name='email'></box-icon>
                 </div>
                 <div class="input-box">
-                    <input type="text" placeholder="Username" required>
+                    <input type="text" name="username" placeholder="Username" required>
                     <box-icon type='solid' name='user'></box-icon>
                 </div>
                 <div class="input-box">
-                    <input type="password" placeholder="Password" required>
-                    <box-icon name='lock' type='solid' ></box-icon>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <box-icon name='lock' type='solid'></box-icon>
                 </div>
-    
                 <button type="submit" class="btn">Sign Up</button>
-    
-                </div>
             </form>
         </div>
     </div>
-    
     <footer>
         <div class="image">
             <img src="../images/IMGhappy.PNG" alt="happy">
         </div>
     </footer>
 </body>
+
 </html>
