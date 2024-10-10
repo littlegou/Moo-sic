@@ -13,13 +13,6 @@ app.secret_key = 'your_secret_key'
 def main():
     return render_template('index.html')
 
-@app.route('/sign_up')
-def signup():
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM username")
-        username = cursor.fetchall()
-    return render_template('signup.html', username=username)
-
 @app.route('/login', methods =['GET', 'POST'])
 def login():
     mesage = ''
@@ -27,15 +20,16 @@ def login():
         username = request.form['username']
         password = request.form['password']
         cursor = connection.cursor(dictionary=True)
-        cursor.execute('SELECT * FROM username WHERE username = % s AND password = % s', (username, password, ))
+        cursor.execute('SELECT * FROM users WHERE username = %s AND password = %s', (username, password))
         user = cursor.fetchone()
+        print(username,password)
         cursor.close()
         if user:
             session['loggedin'] = True
             session['username'] = user['username']
             session['password'] = user['password']
             mesage = 'Logged in successfully !'
-            return render_template('select_mood.html', mesage = mesage)
+            return render_template('selectmood.html', mesage = mesage)
         else:
             mesage = 'Please enter correct username / password !'
     return render_template('login.html', mesage = mesage)
@@ -48,7 +42,7 @@ def sign_up():
         password = request.form['password']
         email = request.form['email']
         cursor = connection.cursor(dictionary=True)
-        cursor.execute('SELECT * FROM usernane WHERE email = % s', (email, ))
+        cursor.execute('SELECT * FROM users WHERE email = %s', (email,))
         account = cursor.fetchone()
         if account:
             mesage = 'Account already exists !'
@@ -61,9 +55,10 @@ def sign_up():
         elif len(password) < 8:
             mesage = 'Please fill you password more than 8 letters !'
         else:
-            cursor.execute('INSERT INTO username (username, email, password) VALUES (% s, % s, % s)', (username, email, password))
+            cursor.execute('INSERT INTO users (username, email, password) VALUES (%s, %s, %s)', (username, email, password))
             connection.commit()
             mesage = 'You have successfully registered !'
+            return render_template('login.html')
     elif request.method == 'POST':
         mesage = 'Please fill out the form !'
     return render_template('signup.html', mesage = mesage)
