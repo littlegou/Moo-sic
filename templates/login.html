@@ -14,14 +14,14 @@
     <header>
         <div class="logo">
             <h1>Login</h1>
-        </div> 
+        </div>
     </header>
-    
+
     <div class="container">
         <div class="wrapper">
             <form action="{{ url_for('login') }}" method="POST">
-            {% if mesage is defined and mesage %}
-                    <div class="alert alert-warning">{{ mesage }}</div>
+                {% if mesage is defined and mesage %}
+                <div class="alert alert-warning">{{ mesage }}</div>
                 {% endif %}
                 <div class="input-box">
                     <input type="text" id="username" name="username" required>
@@ -29,24 +29,23 @@
                 </div>
                 <div class="input-box">
                     <input type="password" id="password" name="password" required>
-                    <box-icon name='lock' type='solid' ></box-icon>
+                    <box-icon name='lock' type='solid'></box-icon>
                 </div>
-    
+
                 <button type="submit" class="btn">Login</button>
-    
+
                 <div class="register-link">
-                    <p>Don't have an account? <a 
-                    href="{{ url_for('sign_up') }}">Sign Up</a></p>
-    
+                    <p>Don't have an account? <a href="{{ url_for('sign_up') }}">Sign Up</a></p>
                 </div>
             </form>
         </div>
     </div>
-    
+
     <footer>
         <div class="image">
-            <img src="{{ url_for('static', filename='images/IMGhappy.PNG') }}" alt="happy">
+            <img src="{{ url_for(' static', filename='images/IMGhappy.PNG' ) }}" alt="happy">
         </div>
     </footer>
 </body>
+
 </html>
