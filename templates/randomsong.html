@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width,
     initail-scale=1.0">
     <link rel="stylesheet" href="../static/randomsong.css">
-    <link href='#' rel='stylesheet'>
 </head>
 
 <body>
@@ -28,10 +27,10 @@
         </button>
         <div class="row">
             <div class="randomagain">
-                <a href="#">สุ่มใหม่</a>
+                <a href="{{ url_for('randomsong') }}">สุ่มใหม่</a>
             </div>
             <div class="moodagain">
-                <a href="#">เลือก mood อีกครั้ง</a> 
+                <a href="{{ url_for('select_mood') }}">เลือก mood อีกครั้ง</a> 
             </div>
         </div>
         <button class="nextbtn" aria-label="Click me"></button>
