@@ -10,7 +10,7 @@
     <header>
         <div class="item">
             <div class="image">
-                <img src="/images/IMGinspiration.PNG" alt="inspirationimg">
+                <img src="{{ url_for('static', filename='images/IMGinspiration.PNG') }}" alt="inspirationimg">
             </div>
             <h1>why?</h1>
         </div>
@@ -18,16 +18,16 @@
 
     <div class="container">
         <div class="btn">
-            <a href="#">เกี่ยวกับความรัก</a>
+            <a href="{{ url_for('randomsong', mood = 'inspiration', why='เกี่ยวกับความรัก') }}">เกี่ยวกับความรัก</a>
         </div>
         <div class="btn">
-            <a href="#">มีเป้าหมาย</a>
+            <a href="{{ url_for('randomsong', mood = 'inspiration', why='มีเป้าหมาย') }}">มีเป้าหมาย</a>
         </div>
         <div class="btn">
-            <a href="#">อยากเชื่อมั่นในตนเอง</a>
+            <a href="{{ url_for('randomsong', mood = 'inspiration', why='อยากเชื่อมั่นในตนเอง') }}">อยากเชื่อมั่นในตนเอง</a>
         </div>
         <div class="btn">
-            <a href="#">อยากจะเริ่มต้นใหม่</a>
+            <a href="{{ url_for('randomsong', mood = 'inspiration', why='อยากจะเริ่มต้นใหม่') }}">อยากจะเริ่มต้นใหม่</a>
         </div>
     </div>
 </body>
