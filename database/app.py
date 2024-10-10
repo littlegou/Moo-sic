@@ -65,7 +65,7 @@ def sign_up():
 
 @app.route('/select_mood')
 def select_mood():
-    return render_template('feel.html')
+    return render_template('selectmood.html')
 
 @app.route('/sad', methods=['GET', 'POST'])
 def sad():
@@ -86,9 +86,9 @@ def randomsong():
         songs = cursor.fetchall()
     return render_template('randomsong.html', songs=songs)
 
-@app.route('/exited', methods=['GET', 'POST'])
-def exited():
-    return render_template('exited.html')
+@app.route('/excited', methods=['GET', 'POST'])
+def excited():
+    return render_template('excited.html')
 
 @app.route('/inspiration', methods=['GET', 'POST'])
 def inspiration():

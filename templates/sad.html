@@ -10,7 +10,7 @@
     <header>
         <div class="item">
             <div class="image">
-                <img src="/images/IMGsad.PNG" alt="sadimg">
+                <img src="{{ url_for('static', filename='images/IMGsad.PNG') }}" alt="sadimg">
             </div>
             <h1>why?</h1>
         </div>
@@ -18,16 +18,16 @@
 
     <div class="container">
         <div class="btn">
-            <a href="#">อกหัก</a>
+            <a href="{{ url_for('randomsong', mood = 'sad', why='อกหัก') }}">อกหัก</a>
         </div>
         <div class="btn">
-            <a href="#">ท้อแท้</a>
+            <a href="{{ url_for('randomsong', mood = 'sad', why='ท้อแท้') }}">ท้อแท้</a>
         </div>
         <div class="btn">
-            <a href="#">หดหู่</a>
+            <a href="{{ url_for('randomsong', mood = 'sad', why='หดหู่') }}">หดหู่</a>
         </div>
         <div class="btn">
-            <a href="#">เศร้าซึม</a>
+            <a href="{{ url_for('randomsong', mood = 'sad', why='เศร้าซึม') }}">เศร้าซึม</a>
         </div>
     </div>
 </body>
