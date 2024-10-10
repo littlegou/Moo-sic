@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" href="/static/feel.css">
+    <link rel="stylesheet" href="/static/selectmood.css">
 </head>
 
 <body>
     <header>
         <div class="logo">
             <h1>วันนี้คุณรู้สึกอย่างไร?</h1>
-        </div> 
+        </div>
     </header>
     <div class="container">
         <div class="row">
@@ -29,10 +29,10 @@
             <div class="inspiration">
                 <img src="{{ url_for('static', filename='images/IMGinspiration.PNG') }}" alt="inspiration">
                 <a href="{{ url_for('inspiration') }}"><button type="submit" class="btn">Inspiration</button></a>
+            </div>
             <div class="excited">
                 <img src="{{ url_for('static', filename='images/IMGexcited.PNG') }}" alt="Excited">
                 <a href="{{ url_for('excited') }}"><button type="submit" class="btn">Excited</button></a>
             </div>
         </div>
-    </div>
 </body>
