@@ -21,7 +21,7 @@
     </header>
     <div class="container">
         <div class="wrapper">
-            <form action="">
+            <form action="{{ url_for('sign_up') }}" method="POST">
                 {% if mesage is defined and mesage %}
                 <div class="alert alert-warning">{{ mesage }}</div>
                 {% endif %}
