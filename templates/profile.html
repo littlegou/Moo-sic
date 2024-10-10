@@ -10,43 +10,40 @@
 
 <body>
     <header>
-        <div class="mooyoungimg"> <img src="{{ url_for('static', filename='images/mooyoung.PNG') }}" alt="profile-img">
+        <div class="mooyoungimg">
+            <img src="{{ url_for('static', filename='images/mooyoung.PNG') }}" alt="profile-img">
         </div>
         <div class="name">
-            <p>Bambisac</p>
+            <p>{{ username }}</p>
         </div>
     </header>
 
     <section>
-        <p>My Favorite</p>
+        <p>My Favorite Songs</p>
     </section>
 
     <div class="container">
-        <ul>
-
-            <!-- ส่วน li(ย่อมาจาก list) ก็จะมี div ใส่ชื่อเพลง/ศิลปิน/ลิงค์YT -->
-            <li>
-                <div class="songname">
-                    <p>라이즈 'Impossible' </p>
-                </div>
-                <div class="artist">
-                    <p>RIIZE</p>
-                </div>
-                <div class="youtube"><a href="https://youtu.be/Ey53EQhkLY8"><img
-                            src="{{ url_for('static', filename='images/yt-icon.png') }}" alt="youtube-icon"></a></div>
-            </li>
-            <li>
-                <div class="songname">
-                    <p>งานเต้นรำในคืนพระจันทร์เต็มดวง</p>
-                </div>
-                <div class="artist">
-                    <p>COCKTAIL CLASSICS A Symphony Orchestra Concert</p>
-                </div>
-                <div class="youtube"><a href="https://youtu.be/lyFyDKvseQI"><img
-                            src="{{ url_for('static', filename='images/yt-icon.png') }}" alt="youtube-icon"></a></div>
-            </li>
-            <!-- ใส่เพลงเพิ่มเรื่อย ๆ ตามที่กดหัวใจ -->
-        </ul>
+        {% if songs %}
+            <ul>
+                {% for song in songs %}
+                    <li>
+                        <div class="songname">
+                            <p>{{ song['Song'] }}</p>
+                        </div>
+                        <div class="artist">
+                            <p>{{ song['Artists'] }}</p>
+                        </div>
+                        <div class="youtube">
+                            <a href="{{ song['yt'] }}">
+                                <img src="{{ url_for('static', filename='images/yt-icon.png') }}" alt="youtube-icon">
+                            </a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No songs found.</p>
+        {% endif %}
     </div>
 </body>
 

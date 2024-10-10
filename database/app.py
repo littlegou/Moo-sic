@@ -74,25 +74,63 @@ def sad():
 def happy():
     return render_template('happy.html')
 
-@app.route('/randomsong')
+@app.route('/randomsong', methods=['GET', 'POST'])
 def randomsong():
+    if request.method == 'POST':
+        song_name = request.form.get('song_name')
+        artist = request.form.get('artist')
+        username = session.get('username')
+        print(song_name,username,artist)
+        query = "SELECT yt FROM song WHERE song_name = %s"
+        with connection.cursor() as cursor:
+            cursor.execute(query, (song_name,))
+            result = cursor.fetchone()
+
+            if result:
+                youtube_link = result[0]
+
+                if username and song_name and artist:
+                    check_fav_query = "SELECT * FROM favorites WHERE username = %s AND Song = %s"
+                    cursor = connection.cursor(dictionary=True)
+                    cursor.execute(check_fav_query, (username, song_name))
+                    existing_favorite = cursor.fetchone()
+
+                    if not existing_favorite:
+                        insert_query = "INSERT INTO favorites (id, username, Song, Artists, yt) VALUES (NULL, %s, %s, %s, %s)"
+                        with connection.cursor() as cursor:
+                            cursor.execute(insert_query, (username, song_name, artist, youtube_link))
+                            connection.commit()
+        return redirect(url_for('profile'))
+
     mood = request.args.get('mood')
     why = request.args.get('why')
 
-    query = "SELECT song_name, Artist, Embed FROM song WHERE mood = %s AND why = %s ORDER BY RAND() LIMIT 1"
+    query = "SELECT song_name, artist, embed FROM song WHERE mood = %s AND why = %s ORDER BY RAND() LIMIT 1"
     with connection.cursor() as cursor:
         cursor.execute(query, (mood, why))
         songs = cursor.fetchall()
-        print(songs)
+    print(songs)
     return render_template('randomsong.html', songs=songs)
 
 @app.route('/')
 def findbug():
-
     with connection.cursor() as cursor:
         cursor.execute('SELECT Embed FROM song')
         songs = cursor.fetchall()
     return render_template('findbug.html', songs=songs)
+
+@app.route('/profile')
+def profile():
+    if 'username' in session:
+        username = session['username']
+        
+        cursor = connection.cursor(dictionary=True)
+        cursor.execute('SELECT Song, Artists, yt FROM favorites WHERE username = %s', (username,))
+        songs = cursor.fetchall()
+        cursor.close()
+        print(songs)
+        return render_template('profile.html', username=username, songs=songs)
+
 
 @app.route('/excited', methods=['GET', 'POST'])
 def excited():
@@ -105,10 +143,6 @@ def inspiration():
 @app.route('/anger', methods=['GET', 'POST'])
 def anger():
     return render_template('anger.html')
-
-@app.route('/profile')
-def profile():
-    return render_template('profile.html')
 
 @app.route('/logout')
 def logout():

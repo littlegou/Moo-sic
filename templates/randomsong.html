@@ -33,8 +33,12 @@
         </div>
 
         <!-- ปุ่มหัวใจอยู่ตรงนี้ -->
-        <button class="imagebtn" aria-label="Click me">
-        </button>
+        <form method="POST" action="/randomsong">
+            <input type="hidden" name="song_name" value="{{ songs[0][0] }}">
+            <input type="hidden" name="artist" value="{{ songs[0][1] }}">
+            <button class="imagebtn" aria-label="Click me">
+            </button>
+        </form>
 
         <div class="row">
             <div class="randomagain">
