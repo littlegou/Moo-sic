@@ -19,15 +19,12 @@
     <div class="container">
         <div class="song">
             <!-- ทดลองใส่ iframe เพลง แต่ผมไม่รู้ว่า backend จะทำยังไงนะ TT -->
-            <iframe width="1045" height="588" src="https://www.youtube.com/embed/lyFyDKvseQI"
-                title="งานเต้นรำในคืนพระจันทร์เต็มดวง - COCKTAIL CLASSICS A Symphony Orchestra Concert" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            {{ songs[0][2]|safe }}
         </div>
     </div>
     <section>
         <div class="name">
-            <p>งานเต้นรำในคืนพระจันทร์เต็มดวง - COCKTAIL CLASSICS A Symphony Orchestra Concert</p>
+            <p>{{ songs[0][0] }} - {{ songs[0][1] }}</p>
             <br>
         </div>
 

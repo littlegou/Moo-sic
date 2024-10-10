@@ -22,7 +22,6 @@ def login():
         cursor = connection.cursor(dictionary=True)
         cursor.execute('SELECT * FROM users WHERE username = %s AND password = %s', (username, password))
         user = cursor.fetchone()
-        print(username,password)
         cursor.close()
         if user:
             session['loggedin'] = True
@@ -84,6 +83,7 @@ def randomsong():
     with connection.cursor() as cursor:
         cursor.execute(query, (mood, why))
         songs = cursor.fetchall()
+        print(songs)
     return render_template('randomsong.html', songs=songs)
 
 @app.route('/excited', methods=['GET', 'POST'])
