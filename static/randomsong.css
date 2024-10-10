@@ -32,15 +32,20 @@ header {
 }
 
 .song {
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 500px;
     height: 350px;
     background-color: #FFA6A6;
+    iframe {
+        width: 495px;
+        height: 345px;
+    }
 }
 
 .imagebtn {
-    background-image: url(../images/icons8-heart-100.png);
+    background-image: url(images/icons8-heart-100.png);
     justify-content: center;
     align-items: center;
     width: 75px;
@@ -50,13 +55,14 @@ header {
     outline: none;
     cursor: pointer;
     background-color: #FFFF92;
+    margin-bottom: 20px;
 }
 
 .container {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 18px;
 }
 
 section {
@@ -67,25 +73,29 @@ section {
     .row {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        gap: 10rem;
+        gap: 5rem;
     }
     
-    .name h3 {
-        color:#fff;
-        font-family: Itim;
-        font-size: 28px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        -webkit-text-stroke-width: 1px;
-        -webkit-text-stroke-color: #ffa6a6;
+    .name {
+        display: flex;
+        p {
+            text-align: center;
+            color:#fff;
+            font-family: Itim;
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: #ffa6a6;
+        }
     }
-    
+
     .randomagain {
         a {
-            margin: 20px;
+            /* margin: 20px; */
             text-decoration: none;
             color: white;
             display: inline-flex;
@@ -116,7 +126,7 @@ section {
     position: absolute;
     bottom: 1rem;
     right: 1rem;
-    background-image: url(../images/icons8-forward-button-100.png);
+    background-image: url(images/icons8-forward-button-100.png);
     width: 75px;
     height: 75px;
     background-size: cover;

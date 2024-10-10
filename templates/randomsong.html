@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="TF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width,
-    initail-scale=1.0">
+    initial-scale=1.0">
     <link rel="stylesheet" href="../static/randomsong.css">
 </head>
 
@@ -15,24 +15,34 @@
             <h1>นี่คือเพลงที่เราเลือกให้คุณ!</h1>
         </div>
     </header>
+
     <div class="container">
         <div class="song">
+            <!-- ทดลองใส่ iframe เพลง แต่ผมไม่รู้ว่า backend จะทำยังไงนะ TT -->
+            <iframe width="1045" height="588" src="https://www.youtube.com/embed/lyFyDKvseQI"
+                title="งานเต้นรำในคืนพระจันทร์เต็มดวง - COCKTAIL CLASSICS A Symphony Orchestra Concert" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
     </div>
     <section>
         <div class="name">
-            <h3>artist name</h3>
+            <p>งานเต้นรำในคืนพระจันทร์เต็มดวง - COCKTAIL CLASSICS A Symphony Orchestra Concert</p>
+            <br>
         </div>
+
+        <!-- ปุ่มหัวใจอยู่ตรงนี้ -->
         <button class="imagebtn" aria-label="Click me">
         </button>
+
         <div class="row">
             <div class="randomagain">
                 <a href="{{ url_for('randomsong') }}">สุ่มใหม่</a>
             </div>
             <div class="moodagain">
-                <a href="{{ url_for('select_mood') }}">เลือก mood อีกครั้ง</a> 
+                <a href="{{ url_for('select_mood') }}">เลือก mood อีกครั้ง</a>
             </div>
         </div>
-        <button class="nextbtn" aria-label="Click me"></button>
+        <a href="{{ url_for('profile') }}"><button class="nextbtn" aria-label="Click me"></button></a>
     </section>
 </body>

@@ -1,25 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>my profile</title>
     <link rel="stylesheet" href="/static/profile.css">
 </head>
+
 <body>
     <header>
-        <div class="mooyoungimg"> <img src="/images/Layer/IMG_4276.PNG" alt=""></div>
-        <div class="name"><p>Bambisac</p></div>
+        <div class="mooyoungimg"> <img src="{{ url_for('static', filename='images/mooyoung.PNG') }}" alt="profile-img">
+        </div>
+        <div class="name">
+            <p>Bambisac</p>
+        </div>
     </header>
-    <section><p>My Favorite</p></section>
+
+    <section>
+        <p>My Favorite</p>
+    </section>
+
     <div class="container">
-        <ol>
+        <ul>
+
+            <!-- ส่วน li(ย่อมาจาก list) ก็จะมี div ใส่ชื่อเพลง/ศิลปิน/ลิงค์YT -->
             <li>
-                <div class="songname"><p>song</p></div>
-                <div class="artist"><p>bambi</p></div>
-                <div class="youtube"><a href="https://youtu.be/Ey53EQhkLY8"><img src="/images/yt-icon.png" alt=""></a></div>
+                <div class="songname">
+                    <p>라이즈 'Impossible' </p>
+                </div>
+                <div class="artist">
+                    <p>RIIZE</p>
+                </div>
+                <div class="youtube"><a href="https://youtu.be/Ey53EQhkLY8"><img
+                            src="{{ url_for('static', filename='images/yt-icon.png') }}" alt="youtube-icon"></a></div>
             </li>
-        </ol>
+            <li>
+                <div class="songname">
+                    <p>งานเต้นรำในคืนพระจันทร์เต็มดวง</p>
+                </div>
+                <div class="artist">
+                    <p>COCKTAIL CLASSICS A Symphony Orchestra Concert</p>
+                </div>
+                <div class="youtube"><a href="https://youtu.be/lyFyDKvseQI"><img
+                            src="{{ url_for('static', filename='images/yt-icon.png') }}" alt="youtube-icon"></a></div>
+            </li>
+            <!-- ใส่เพลงเพิ่มเรื่อย ๆ ตามที่กดหัวใจ -->
+        </ul>
     </div>
 </body>
+
 </html>

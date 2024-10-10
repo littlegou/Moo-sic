@@ -98,9 +98,9 @@ def inspiration():
 def anger():
     return render_template('anger.html')
 
-@app.route('/song')
-def song():
-    return render_template('song.html')
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
 
 @app.route('/logout')
 def logout():
