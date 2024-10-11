@@ -9,9 +9,9 @@ static_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static')
 app = Flask(__name__, template_folder=template_dir,static_folder=static_dir)
 app.secret_key = 'your_secret_key'
 
-@app.route('/')
-def main():
-    return render_template('index.html')
+# @app.route('/')
+# def main():
+#     return render_template('index.html')
 
 @app.route('/login', methods =['GET', 'POST'])
 def login():
@@ -112,12 +112,12 @@ def randomsong():
     print(songs)
     return render_template('randomsong.html', songs=songs)
 
-# @app.route('/')
-# def findbug():
-#     with connection.cursor() as cursor:
-#         cursor.execute('SELECT Embed FROM song')
-#         songs = cursor.fetchall()
-#     return render_template('findbug.html', songs=songs)
+@app.route('/')
+def findbug():
+    with connection.cursor() as cursor:
+        cursor.execute('SELECT Embed FROM song')
+        songs = cursor.fetchall()
+    return render_template('findbug.html', songs=songs)
 
 @app.route('/profile')
 def profile():
