@@ -9,13 +9,13 @@
 </head>
 
 <body>
-    <nav class="navbar">
+    <nav>
         <div class="nav-item-container">
             <div class="logoutbtn">
-                <a href="#">log out</a>
+                <a href="#">Log out</a>
             </div>
             <div class="select">
-                <a href="#">เลือก mood อีกครั้ง</a>
+                <a href="{{ url_for('select_mood') }}">เลือก mood อีกครั้ง</a>
             </div>
         </div>
     </nav>
@@ -34,25 +34,25 @@
 
     <div class="container">
         {% if songs %}
-            <ul>
-                {% for song in songs %}
-                    <li>
-                        <div class="songname">
-                            <p>{{ song['Song'] }}</p>
-                        </div>
-                        <div class="artist">
-                            <p>{{ song['Artists'] }}</p>
-                        </div>
-                        <div class="youtube">
-                            <a href="{{ song['yt'] }}">
-                                <img src="{{ url_for('static', filename='images/yt-icon.png') }}" alt="youtube-icon">
-                            </a>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
+        <ul>
+            {% for song in songs %}
+            <li>
+                <div class="songname">
+                    <p>{{ song['Song'] }}</p>
+                </div>
+                <div class="artist">
+                    <p>{{ song['Artists'] }}</p>
+                </div>
+                <div class="youtube">
+                    <a href="{{ song['yt'] }}">
+                        <img src="{{ url_for('static', filename='images/yt-icon.png') }}" alt="youtube-icon">
+                    </a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
         {% else %}
-            <p>No songs found.</p>
+        <p>No songs found.</p>
         {% endif %}
     </div>
 </body>

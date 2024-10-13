@@ -105,6 +105,11 @@ section {
             background-color: #FFA6A6;
             text-decoration: none;
             border-radius: 25px;
+            cursor: pointer;
+        }
+        a:hover {
+            background-color: #9CE391;
+            transition: background-color 0.15s ease
         }
     }
     
@@ -118,6 +123,10 @@ section {
             justify-content: center;
             align-items: center;
             border-radius: 25px;
+        }
+        a:hover {
+            background-color: #9CE391;
+            transition: background-color 0.15s ease
         }
     }
 }
