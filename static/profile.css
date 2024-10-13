@@ -6,6 +6,37 @@
     box-sizing: border-box;
     background-color: #F8E3A1;
 }
+nav {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 20px;
+    column-gap: 5px;
+    justify-content: end;
+    justify-content: space-between;
+}
+.nav-item-container{
+    display: flex;
+    column-gap: 15px;
+    margin-top: 15px;
+    margin-left: 1180px;
+}
+a{
+    color: white;
+    background-color: #f38383;
+    text-decoration: none;
+}
+.logoutbtn{
+    background-color: #f38383;
+    border-radius: 25px;
+    padding: 20px;
+    color: #f38383;
+}
+.select{
+    background-color: #f38383;
+    border-radius: 25px;
+    padding: 20px;
+    color: #f38383;
+}
 header {
     display: flex;
     flex-direction: row;
