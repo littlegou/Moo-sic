@@ -1,18 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 
-:root {
-    --hover-color-sad: #2366C3;
-    --hover-color-anger: #F50000;
-    --hover-color-excited: #F55800;
-    --hover-color-inspiration: #9747FF;
-    --hover-color-happy: #ffe605;
-}
-
-.emotion-btn:hover {
-    background-color: var(--hover-color);
-    transition: 0.15s;
-}
-
 * {
     margin: 0;
     padding: 0 ;
