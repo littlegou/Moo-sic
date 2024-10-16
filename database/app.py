@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from DB import get_db_connection
 import os
 import re
+from werkzeug.security import generate_password_hash, check_password_hash
+
 connection = get_db_connection()
 
 template_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'templates')
@@ -20,13 +22,12 @@ def login():
         username = request.form['username']
         password = request.form['password']
         cursor = connection.cursor(dictionary=True)
-        cursor.execute('SELECT * FROM users WHERE username = %s AND password = %s', (username, password))
+        cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
         user = cursor.fetchone()
         cursor.close()
-        if user:
+        if user and check_password_hash(user['password'], password):
             session['loggedin'] = True
             session['username'] = user['username']
-            session['password'] = user['password']
             mesage = 'Logged in successfully !'
             return render_template('selectmood.html', mesage = mesage)
         else:
@@ -43,8 +44,14 @@ def sign_up():
         cursor = connection.cursor(dictionary=True)
         cursor.execute('SELECT * FROM users WHERE email = %s', (email,))
         account = cursor.fetchone()
+        cursor = connection.cursor(dictionary=True)
+        cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
+        accusn = cursor.fetchone()
+
         if account:
-            mesage = 'Account already exists !'
+            mesage = 'Email already exists !'
+        elif accusn:
+            mesage = 'Username already exists !'
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
             mesage = 'Invalid email address !'
         elif not username or not password or not email:
@@ -54,9 +61,13 @@ def sign_up():
         elif len(password) < 8:
             mesage = 'Please fill you password more than 8 letters !'
         else:
-            cursor.execute('INSERT INTO users (username, email, password) VALUES (%s, %s, %s)', (username, email, password))
+            hashed_password = generate_password_hash(password)
+            print(username,hashed_password,1)
+            cursor = connection.cursor(dictionary=True)
+            cursor.execute('INSERT INTO users (username, email, password) VALUES (%s, %s, %s)', (username, email, hashed_password))
             connection.commit()
             mesage = 'You have successfully registered !'
+            print(username,hashed_password)
             return render_template('login.html')
     elif request.method == 'POST':
         mesage = 'Please fill out the form !'
@@ -123,7 +134,6 @@ def profile():
         cursor.close()
         print(songs)
         return render_template('profile.html', username=username, songs=songs)
-
 
 @app.route('/excited', methods=['GET', 'POST'])
 def excited():
