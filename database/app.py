@@ -21,13 +21,13 @@ def login():
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
-        cursor = connection.cursor(dictionary=True)
+        cursor = connection.cursor(buffered=True)
         cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
         user = cursor.fetchone()
         cursor.close()
-        if user and check_password_hash(user['password'], password):
+        if user and check_password_hash(user[2], password):
             session['loggedin'] = True
-            session['username'] = user['username']
+            session['username'] = user[0]
             mesage = 'Logged in successfully !'
             return render_template('selectmood.html', mesage = mesage)
         else:
@@ -41,10 +41,10 @@ def sign_up():
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
-        cursor = connection.cursor(dictionary=True)
+        cursor = connection.cursor(buffered=True)
         cursor.execute('SELECT * FROM users WHERE email = %s', (email,))
         account = cursor.fetchone()
-        cursor = connection.cursor(dictionary=True)
+        cursor = connection.cursor(buffered=True)
         cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
         accusn = cursor.fetchone()
 
@@ -63,7 +63,7 @@ def sign_up():
         else:
             hashed_password = generate_password_hash(password)
             print(username,hashed_password,1)
-            cursor = connection.cursor(dictionary=True)
+            cursor = connection.cursor(buffered=True)
             cursor.execute('INSERT INTO users (username, email, password) VALUES (%s, %s, %s)', (username, email, hashed_password))
             connection.commit()
             mesage = 'You have successfully registered !'
@@ -102,7 +102,7 @@ def randomsong():
 
                 if username and song_name and artist:
                     check_fav_query = "SELECT * FROM favorites WHERE username = %s AND Song = %s"
-                    cursor = connection.cursor(dictionary=True)
+                    cursor = connection.cursor(buffered=True)
                     cursor.execute(check_fav_query, (username, song_name))
                     existing_favorite = cursor.fetchone()
 
@@ -128,7 +128,7 @@ def profile():
     if 'username' in session:
         username = session['username']
         
-        cursor = connection.cursor(dictionary=True)
+        cursor = connection.cursor(buffered=True)
         cursor.execute('SELECT Song, Artists, yt FROM favorites WHERE username = %s', (username,))
         songs = cursor.fetchall()
         cursor.close()
