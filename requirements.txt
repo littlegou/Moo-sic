@@ -3,3 +3,4 @@ mysql-connector-python==8.0.30
 PyMySQL==1.1.1
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
+gunicorn
