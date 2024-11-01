@@ -38,13 +38,13 @@
             {% for song in songs %}
             <li>
                 <div class="songname">
-                    <p>{{ song['Song'] }}</p>
+                    <p>{{ song[0] }}</p>
                 </div>
                 <div class="artist">
-                    <p>{{ song['Artists'] }}</p>
+                    <p>{{ song[1] }}</p>
                 </div>
                 <div class="youtube">
-                    <a href="{{ song['yt'] }}">
+                    <a href="{{ song[2] }}">
                         <img src="{{ url_for('static', filename='images/yt-icon.png') }}" alt="youtube-icon">
                     </a>
                 </div>
