@@ -10,8 +10,7 @@
 }
 
 body {
-    background: #b3f4ff;
-    background-image: url(images/Layer/IMG_4280.PNG);
+    background: rgb(179, 244, 255);
 }
 
 header {
@@ -88,6 +87,35 @@ h1 {
 .input-box input::placeholder {
     color: #FFA6A6;
 }
+
+/* .input-box i{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+} */
+
+/* .wrapper .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+} */
+
+/* .remember-forgot label input {
+    accent-color: white;
+    margin-right: 3px;
+}
+
+.remember-forgot a {
+    color: white;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover{
+    text-decoration: underline;
+} */
 
 .wrapper .btn {
     width: 100%;
