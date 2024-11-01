@@ -6,16 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>my profile</title>
     <link rel="stylesheet" href="/static/profile.css">
+    <script>
+        function logout() {
+            alert("You have logged out.");
+            closePopup('settings');
+        }
+    </script>
 </head>
 
 <body>
-    <nav>
-        <div class="nav-item-container">
-            <div class="logoutbtn">
-                <a href="{{ url_for('logout') }}">Log out</a>
+    <nav class="navbar">
+        <div class="pf">
+            <div class="mooyoungimg">
+                <img src="{{ url_for('static', filename='images/mooyoung.PNG') }}" alt="profile-img">
             </div>
-            <div class="select">
-                <a href="{{ url_for('select_mood') }}">เลือก mood อีกครั้ง</a>
+            <div class="name">
+                <p>MOO-SIC</p>
+            </div>
+            <div class="navv">
+                <div>
+                    <a href="{{ url_for('m') }}" class="home"><p>Home</p></a>
+                </div>
+                <div>
+                    <a href="{{ url_for('settings') }}" class="setting"><p>Settings</p></a>
+                </div>
             </div>
         </div>
     </nav>
@@ -38,13 +52,13 @@
             {% for song in songs %}
             <li>
                 <div class="songname">
-                    <p>{{ song['Song'] }}</p>
+                    <p>{{ song[0] }}</p>
                 </div>
                 <div class="artist">
-                    <p>{{ song['Artists'] }}</p>
+                    <p>{{ song[1] }}</p>
                 </div>
                 <div class="youtube">
-                    <a href="{{ song['yt'] }}">
+                    <a href="{{ song[2] }}">
                         <img src="{{ url_for('static', filename='images/yt-icon.png') }}" alt="youtube-icon">
                     </a>
                 </div>
@@ -55,6 +69,7 @@
         <p>No songs found.</p>
         {% endif %}
     </div>
+
 </body>
 
 </html>

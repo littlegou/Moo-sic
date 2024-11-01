@@ -3,51 +3,141 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge">
-    <meta name="viewport" content="width=device-width,
-    initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/randomsong.css">
     <script>
         function refreshPage() {
             location.reload();
         }
+        const reasonOptions = {
+            "Happy": ['รู้สึกพอใจ', 'รู้สึกซาบซึ้ง', 'รู้สึกเติมเต็ม', 'รู้สึกยินดี'],
+            "Sad": ['อกหัก', 'ท้อแท้', 'หดหู่', 'เศร้าซึม'],
+            "Excited": ['เร้าใจ', 'ประหม่า', 'คาดหวัง', 'ท้าทาย'],
+            "Inspiration": ['เกี่ยวกับความรัก', 'มีเป้าหมาย', 'อยากเชื่อมั่นในตนเอง', 'อยากจะเริ่มต้นใหม่'],
+            "Angry": ['เดือดดาล', 'อารมณ์เสีย', 'เคียดแค้น', 'ประชดประชัน'],
+        };
+
+        function updateReasonOptions() {
+            const selectedMood = document.getElementById("mood").value;
+            const reasonSelect = document.getElementById("reason");
+            
+            reasonSelect.innerHTML = "";
+            reasonOptions[selectedMood].forEach(reason => {
+                const option = document.createElement("option");
+                option.value = reason;
+                option.textContent = reason;
+                reasonSelect.appendChild(option);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", updateReasonOptions);
     </script>
 </head>
 
 <body>
-    <header>
-        <div class="logo">
-            <h1>นี่คือเพลงที่เราเลือกให้คุณ!</h1>
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="song">
-            {{ songs[0][2]|safe }}
-        </div>
-    </div>
-    <section>
-        <div class="name">
-            <p>{{ songs[0][0] }} - {{ songs[0][1] }}</p>
-            <br>
-        </div>
-
-        <!-- ปุ่มหัวใจอยู่ตรงนี้ -->
-        <form method="POST" action="/randomsong">
-            <input type="hidden" name="song_name" value="{{ songs[0][0] }}">
-            <input type="hidden" name="artist" value="{{ songs[0][1] }}">
-            <button class="imagebtn" aria-label="Click me">
-            </button>
-        </form>
-
-        <div class="row">
-            <div class="randomagain">
-                <a onclick="refreshPage()">สุ่มใหม่</a>
+    <nav class="navbar">
+        <div class="pf">
+            <div class="mooyoungimg">
+                <img src="{{ url_for('static', filename='images/mooyoung.PNG') }}" alt="profile-img">
             </div>
-            <div class="moodagain">
-                <a href="{{ url_for('select_mood') }}">เลือก mood อีกครั้ง</a>
+            <div class="name">
+                <p>MOO-SIC</p>
+            </div>
+            <div class="navv">
+                <div>
+                    <a href="{{ url_for('m') }}" class="home"><p>Home</p></a>
+                </div>
+                <div>
+                    <a href="{{ url_for('settings') }}" class="setting"><p>Settings</p></a>
+                </div>
             </div>
         </div>
-        <a href="{{ url_for('profile') }}"><button class="nextbtn" aria-label="Click me"></button></a>
+    </nav>
+    <section class="favorites-and-add-song">
+        <div class="favorites">
+            <h2>เพลงโปรดของคุณ</h2>
+            <ul class="songs">
+                {% for song in favorite_songs %}
+                <a href="{{ song[2] }}"><li>{{ song[0] }} - {{ song[1] }}</li></a>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="selected-song">
+            <header>
+                <div class="logo">
+                    <h1>นี่คือเพลงที่เราเลือกให้คุณ!</h1>
+                </div>
+            </header>
+        
+            <div class="container">
+                <div class="song">
+                    {{ songs[2]|safe }}
+                </div>
+            </div>
+            <section class="randomsong">
+                <div class="name">
+                    <p>{{ songs[0] }} - {{ songs[1] }}</p>
+                    <br>
+                </div>
+        
+                <form method="POST">
+                    <input type="hidden" name="song_name" value="{{ songs[0] }}">
+                    <input type="hidden" name="artist" value="{{ songs[1] }}">
+                    <button class="imagebtn" name="add_fav" aria-label="Click me"></button>
+                </form>
+        
+                <div class="row">
+                    <div class="randomagain">
+                        <a href="{{ url_for('randomsong', mood=mood, reason=reason, refresh=true) }}">สุ่มใหม่</a>
+                    </div>
+                    <div class="moodagain">
+                        <a href="{{ url_for('select_mood') }}">เลือก mood อีกครั้ง</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="add-song">
+            <h2>เพิ่มเพลงใหม่</h2>
+            <form method="POST">
+                <label for="new_song_name">ชื่อเพลง:</label>
+                <input type="text" id="new_song_name" name="new_song_name" required>
+                
+                <label for="new_artist">ศิลปิน:</label>
+                <input type="text" id="new_artist" name="new_artist" required>
+                
+                <label for="youtube_link">ลิงค์ YouTube:</label>
+                <input type="text" id="youtube_link" name="youtube_link" placeholder="กดแชร์จาก Youtube แล้ว Copy Link มานะครับ" required>
+
+                <label for="mood">Mood</label>
+                <select name="mood" id="mood" class="bot" onchange="updateReasonOptions()" required>
+                    <option value="Happy">Happy</option>
+                    <option value="Sad">Sad</option>
+                    <option value="Excited">Excited</option>
+                    <option value="Inspiration">Inspiration</option>
+                    <option value="Angry">Angry</option>
+                </select>
+
+                <label for="reason">เหตุผล:</label>
+                <select name="reason" id="reason" class="bot" required>
+                </select>
+                
+                <button type="submit" name="add_song">เพิ่มเพลง</button>
+            </form>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
     </section>
+
+    <a href="{{ url_for('profile') }}"><button class="nextbtn" aria-label="Click me"></button></a>
 </body>
+</html>

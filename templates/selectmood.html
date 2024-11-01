@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Slider</title>
     <link rel="stylesheet" href="/static/selectmood.css">
+    <script src="/static/js/script.js" defer></script> 
 </head>
 
 <body>
@@ -10,29 +14,34 @@
             <h1>วันนี้คุณรู้สึกอย่างไร?</h1>
         </div>
     </header>
-    <div class="container">
-        <div class="row">
-            <div class="happy">
-                <img src="{{ url_for('static', filename='images/IMGhappy.PNG') }}" alt="happy">
-                <a href="{{ url_for('happy') }}"><button type="submit" class="btn">Happy</button></a>
+    <div class="mood-container">
+        <div class="mood-wheel">
+            <div class="mood" data-mood="Happy">
+                <img src="{{ url_for('static', filename='images/IMGhappy.PNG') }}" class="photo" alt="Happy" />
+                <p><span>Happy</span></p>
             </div>
-            <div class="sad">
-                <img src="{{ url_for('static', filename='images/IMGsad.PNG') }}" alt="sad">
-                <a href="{{ url_for('sad') }}"><button type="submit" clsadss="btn">Sad</button></a>
+            <div class="mood" data-mood="Sad">
+                <img src="{{ url_for('static', filename='images/IMGsad.PNG') }}" class="photo" alt="Sad" />
+                <p><span>Sad</span></p>
             </div>
-            <div class="anger">
-                <img src="{{ url_for('static', filename='images/IMGanger.PNG') }}" alt="anger">
-                <a href="{{ url_for('anger') }}"><button type="submit" class="btn">Angry</button></a>
+            <div class="mood" data-mood="Excited">
+                <img src="{{ url_for('static', filename='images/IMGexcited.PNG') }}" class="photo" alt="Excited" />
+                <p><span>Excited</span></p>
             </div>
-        </div>
-        <div class="row">
-            <div class="inspiration">
-                <img src="{{ url_for('static', filename='images/IMGinspiration.PNG') }}" alt="inspiration">
-                <a href="{{ url_for('inspiration') }}"><button type="submit" class="btn">Inspiration</button></a>
+            <div class="mood" data-mood="Inspiration">
+                <img src="{{ url_for('static', filename='images/IMGinspiration.PNG') }}" class="photo" alt="Inspiration" />
+                <p><span>Inspiration</span></p>
             </div>
-            <div class="excited">
-                <img src="{{ url_for('static', filename='images/IMGexcited.PNG') }}" alt="Excited">
-                <a href="{{ url_for('excited') }}"><button type="submit" class="btn">Excited</button></a>
+            <div class="mood" data-mood="Angry">
+                <img src="{{ url_for('static', filename='images/IMGanger.PNG') }}" class="photo" alt="Angry" />
+                <p><span>Angry</span></p>
             </div>
         </div>
+    </div>
+
+    <div class="reasons-container" style="display: none;">
+        <h3 class="reason">WHY?</h3>
+        <div class="reasons-list"></div>
+    </div>
 </body>
+</html>
