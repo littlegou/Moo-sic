@@ -37,19 +37,19 @@
         }
         .name{
             display: flex;
-            flex-direction: column;
+            /* flex-direction: column; */
             text-align: center;
             align-items: center;
             font-size: 30px;
             background-color: transparent;
-            padding-right: 50%;
+            /* padding-right: 50%; */
             white-space: nowrap;
         }
         .navv {
             background-color: transparent;
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            /* justify-content: space-between; */
             text-align: center;
             align-items: center;
             font-size: 20px;
