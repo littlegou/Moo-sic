@@ -9,44 +9,53 @@
     
   </head>
   <body>
-    <nav class="navbar">
-      <div class="pf">
-          <div class="mooyoungimg">
-              <img src="{{ url_for('static', filename='images/mooyoung.PNG') }}" alt="profile-img">
+    <nav class="navbar items-center">
+      <div class="pf ">
+          <div class="flex flex-row w-[70px] h-[70px] my-auto bg-transparent rounded-full ">
+              <img src="{{ url_for('static', filename='images/mooyoung.PNG') }}" alt="profile-img" class="flex object-center object-cover w-full h-full mb-3 rounded-full bg-white">
           </div>
           <div class="name">
               <p>MOO-SIC</p>
           </div>
           <div class="navv">
               <div>
-                  <a href="{{ url_for('m') }}" class="home"><p>Home</p></a>
+                  <a href="{{ url_for('m') }}" class="home items-center"><p>Home</p></a>
               </div>
               <div>
-                  <a href="{{ url_for('settings') }}" class="setting"><p>Settings</p></a>
+                  <a href="{{ url_for('settings') }}" class="setting items-center"><p>Settings</p></a>
               </div>
           </div>
       </div>
   </nav>
     <div class="min-h-screen min-w-full flex justify-center bg-[#f9f5e4]">
       <div class="grid grid-cols-2 grid-rows-1 w-[1000px] h-[500px] mt-8 border-8  border-[#8e8c8c] rounded-2xl shadow-2xl bg-[#b9def8]">
-        <div class="grid grid-rows-2 bg-[#769cf6]">
+        <div class="grid grid-rows-3 bg-[#769cf6]">
           <div class="flex items-center justify-center ">
             <div class="flex flex-col bg-white rounded-full w-[200px] h-[200px] object-scale-down items-center justify-center my-auto border-[7px] border-[#8e8c8c]">
-            <img class="flex  w-full h-full object-cover  mb-3 "
+            <img class="flex  w-full h-full object-cover  mb-3 rounded-full"
               src="{{ url_for('static', filename='images/mooyoung.PNG') }}"
               alt="profile-img"
             />
             </div>
           </div>
-          <div class="flex flex-row items-start mt-10 justify-start pl-5 text-[25px]">
+          <div class="flex flex-row items-start mt-10 justify-start pl-5 text-[25px] h-fit w-fit">
+
             <div class="text-[25px] text-amber-400">Username: </div>
             <div class="text-wrap pl-2">In case your username is really really long so i write it from left instead of center</div>
           </div>
+          <div class="flex flex-row items-start justify-start pl-5 text-[25px]">
+            <div class="text-[25px] text-amber-400">
+              Email:
+            </div>
+            <div class="text-wrap pl-2">In case your email is really really soooooooooooooo longgggggggg</div>
+        </div>
 
         </div>
-        <div class="grid grid-rows-5 w-full h-full p-2 text-[25px] border-l-4 border-[#b5b3b3]">
+        <div class="grid grid-rows-7 w-full h-full p-2 text-[25px] border-l-4 border-[#b5b3b3]">
           <div class="flex  w-full h-full justify-center items-center text-[30px] text-amber-100">Edit your Username</div>
           <div class="flex  w-full h-full justify-center items-center"><input type="text" placeholder="your username" class="rounded-md text-center w-[250px] h-[35px]"></div>
+          <div class="flex  w-full h-full justify-center items-center text-amber-100">Edit your email</div>
+          <div class="flex w-full h-full justify-center items-center"><input type="text" placeholder="your new email" class="rounded-md text-center w-[250px] h-[35px]"></div>
           <div class="flex  w-full h-full justify-center items-center text-amber-100">Edit your password</div>
           <div class="flex w-full h-full justify-center items-center"><input type="password" placeholder="your new password" class="rounded-md text-center w-[250px] h-[35px]"></div>
           <div class="grid grid-cols-2  w-full h-full items-center text-white">
