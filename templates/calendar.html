@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/calendar.css" />
+    <title>Calendar with Events</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="logo">
+                <img src="{{ url_for('static', filename='images/mooyoung.PNG') }}" alt="profile-img">
+                <p>MOO-SIC</p>
+            </li>
+
+            <li class="btn">
+                <div class="btn-home">
+                    <a href="{{ url_for('m') }}">
+                        <img src="../static/images/icons8-home-50.png" alt="">
+                        <p>Home</p>
+                    </a>
+                </div>
+
+                <div class="btn-setting">
+                    <a href="{{ url_for('settings') }}">
+                        <img src="../static/images/icons8-setting-50.png" alt="">
+                        <p>Settings</p>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="left">
+            <div class="calendar">
+                <header class="month">
+                    <button class="prev">&lt;</button>
+                    <div class="date">November 2024</div>
+                    <button class="next">&gt;</button>
+                </header>
+                <div class="weekdays">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+                <div class="days"></div>
+                <div class="goto-today">
+                    <div class="goto">
+                        <input type="text" placeholder="mm/yyyy" class="date-input" />
+                        <button class="goto-btn">Go</button>
+                    </div>
+                    <button class="today-btn">Today</button>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <section class="today-date">
+                <div class="event-day">Select a day</div>
+                <div class="event-date">No date selected</div>
+            </section>
+            <section class="events">
+                <h3>Your Mood:</h3>
+                <div id="noDataContainer" style="display: none;">
+                    <p>คุณยังไม่ได้เลือก Mood</p>
+                    <button id="goToOtherPage">เลือก Mood</button>
+                </div>
+            
+                <div id="eventDataContainer" style="display: none;">
+                    <h3>Mood ที่คุณเลือก:</h3>
+                    <div id="eventDetails"></div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+
+    <script src="../static/js/calendar.js"></script>
+</body>
+</html>

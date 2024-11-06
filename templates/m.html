@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+    <link rel="stylesheet" href="../static/m.css">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li class="logo">
+                <img src="{{ url_for('static', filename='images/mooyoung.PNG') }}" alt="profile-img">
+                <p>MOO-SIC</p>
+            </li>
+
+            <li class="btn">
+                <div class="btn-home">
+                    <a href="{{ url_for('m') }}">
+                        <img src="../static/images/icons8-home-50.png" alt="">
+                        <p>Home</p>
+                    </a>
+                </div>
+
+                <div class="btn-setting">
+                    <a href="{{ url_for('settings') }}">
+                        <img src="../static/images/icons8-setting-50.png" alt="">
+                        <p>Settings</p>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="feature">
+        <a href="{{ url_for('select_mood') }}"><img src="../static/images/IMG_4690.PNG" class="imgg"></a>
+        <a href="{{ url_for('calendar') }}"><img src="../static/images/IMG_4691.PNG" class="imgg"></a>
+        <a href="{{ url_for('recommend') }}"><img src="../static/images/IMG_4692.PNG" class="imgg"></a>
+        <a href="{{ url_for('selectsongforkaraoke') }}"><img src="../static/images/IMG_4693.PNG" class="imgg"></a>
+        <a href="{{ url_for('profile') }}"><img src="../static/images/IMG_4694.PNG" class="imgg"></a>
+    </div>
+</body>
+
+</html>
