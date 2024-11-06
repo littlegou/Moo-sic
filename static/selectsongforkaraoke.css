@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+* {
+    font-family:"Itim", cursive;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+nav {
+    width: 100%;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding: 10px 2rem;
+    background-color: #eea5a5;
+
+    .logo {
+        display: flex;
+        align-items: center;
+        background-color: #eea5a5;
+        gap: 1rem;
+        img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border: 1px solid black;
+            border-radius: 50%;
+            background-color: #D9D9D9;
+        }
+        p {
+            font-size: 24px;
+            background-color: #eea5a5;
+        }
+    }
+
+    .btn {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        background-color: #eea5a5;
+        .btn-home a, .btn-setting a {
+            font-size: 18px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+            background-color: #eea5a5;
+            img, p {
+                background-color: #eea5a5;
+            }
+            img {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    }
+}
+
+body {
+    background-color: #eeeaa1;
+    font-family: Arial, sans-serif;
+    color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+h2 {
+    color: #b75c06;
+    font-size: 28px;
+    margin: 20px 0;
+}
+
+form {
+    background-color: #eda752c0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(79, 76, 76, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #755656;
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: 2px solid #9c7405;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #000709;
+    width: 100%;
+    max-width: 300px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #ffd900;
+    color: #03081a;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e67e22;
+}
+
+#all-songs {
+    margin-top: 20px;
+    background-color: #eda752c0;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(147, 142, 142, 0.5);
+}
+
+#all-songs h3 {
+    color: #806060;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#all-songs ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#all-songs li {
+    color: #f0f0f0;
+    padding: 10px;
+    border-bottom: 1px solid #444;
+}
+
+#all-songs li:last-child {
+    border-bottom: none;
+}

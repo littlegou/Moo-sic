@@ -4,20 +4,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Backgroung Image</title>
+    <title>MOO-SIC</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 
-<body style="background: url('{{ url_for('static', filename='images/IMG_4274.PNG') }}');
+<body style="background: url('{{ url_for('static', filename='images/background.PNG') }}');
        background-size: cover;
        background-color: #ffcd28;
        background-repeat: no-repeat;
        background-position: center;
-       height: 100vh;
-       margin: 0;
+       min-height: 100vh;
        ">
     <div class="btn">
-        <a href="{{ url_for('login') }}"> MOO-SIC</a>
+        <a href="{{ url_for('login') }}">
+            <img src="../static/images/moocrop2.PNG" alt="" style="width: auto; height: auto;" class="img2">
+            <img src="../static/images/moocrop.PNG" alt="" style="width: auto; height: auto;" class="img1">
+        </a>
     </div>
 </body>
 

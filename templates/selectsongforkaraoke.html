@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>เลือกเพลง</title>
+    <link rel="stylesheet" href="../static/selectsongforkaraoke.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="logo">
+                <img src="{{ url_for('static', filename='images/mooyoung.PNG') }}" alt="profile-img">
+                <p>MOO-SIC</p>
+            </li>
+
+            <li class="btn">
+                <div class="btn-home">
+                    <a href="{{ url_for('m') }}">
+                        <img src="../static/images/icons8-home-50.png" alt="">
+                        <p>Home</p>
+                    </a>
+                </div>
+
+                <div class="btn-setting">
+                    <a href="{{ url_for('settings') }}">
+                        <img src="../static/images/icons8-setting-50.png" alt="">
+                        <p>Settings</p>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <h2>Select a Song for Karaoke</h2>
+    <form action="/karaoke" method="get">
+        <label for="song-select">เลือกเพลง:</label>
+        <select id="song-select" name="song_id">
+            {% for song in songs_karaoke %}
+                <option value="{{ song[0] }}">{{ song[1] }} - {{ song[2] }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Go to Karaoke</button>
+    </form>
+
+    <!-- New section to display all available songs -->
+    <div id="all-songs">
+        <h3>Available Songs</h3>
+        <ul>
+            {% for song in songs_karaoke %}
+                <li>{{ song[1] }} - {{ song[2] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

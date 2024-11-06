@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แนะนำเพลง</title>
+    <link rel="stylesheet" href="../static/recommend.css">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li class="logo">
+                <img src="{{ url_for('static', filename='images/mooyoung.PNG') }}" alt="profile-img">
+                <p>MOO-SIC</p>
+            </li>
+
+            <li class="btn">
+                <div class="btn-home">
+                    <a href="{{ url_for('m') }}">
+                        <img src="../static/images/icons8-home-50.png" alt="">
+                        <p>Home</p>
+                    </a>
+                </div>
+
+                <div class="btn-setting">
+                    <a href="{{ url_for('settings') }}">
+                        <img src="../static/images/icons8-setting-50.png" alt="">
+                        <p>Settings</p>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>แนะนำเพลง</h1>
+        <div class="postit-container">
+            <div class="postit add-note" onclick="openPopup()">+</div> <!-- Plus button for adding notes -->
+            {% for postit in postits %}
+            <div class="postit">
+                <h2>{{ postit[1] }}</h2>
+                <p>ศิลปิน : {{ postit[2] }}</p>
+                <p>Listen on <a href="{{ postit[3] }}" target="_blank">YouTube</a></p>
+                <p>เหตุผลที่ต้องฟังเพลงนี้ : {{ postit[4] }}</p>
+                <p>เพิ่มโดย : {{ postit[5] }}</p>
+                <p class="timestamp">{{ postit[6] }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div id="popupForm" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>เพิ่มเพลงที่แนะนำ</h2>
+            <form class="add-note-form" method="POST" action="{{ url_for('recommend') }}">
+                <input type="text" name="name" placeholder="ชื่อของคุณ" required>
+                <input type="text" name="song_name" placeholder="ชื่อเพลง" required>
+                <input type="text" name="artist" placeholder="ศิลปิน" required>
+                <input type="text" name="yt" placeholder="ลิงก์เพลงจาก YouTube" required>
+                <textarea name="reason" placeholder="เหตุผลที่ต้องฟังเพลงนี้" required></textarea>
+                <button type="submit">Add Note</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../static/js/recommend.js"></script>
+</body>
+
+</html>

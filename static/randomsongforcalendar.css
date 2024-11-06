@@ -65,14 +65,12 @@ nav ul {
     }
 }
 
-
 header {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 20px;
 }
-
 
 .head-text {
     display: flex;
@@ -82,7 +80,7 @@ header {
     height: 70px;
     flex-shrink: 0;
     border-radius: 25px;
-    background: #FFA6A6;
+    background: #fd7b7b;
     color: white;
 }
 
@@ -114,6 +112,7 @@ header {
     cursor: pointer;
     background-color: transparent;
     margin-bottom: 20px;
+    margin: 0;
 }
 
 .randomsong {
@@ -128,7 +127,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 5rem;
+    gap: 20px;
 }
 
 .name {
@@ -140,7 +139,23 @@ header {
     }
 }
 
-.randomagain, .moodagain {
+.inp{
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+}
+
+.description {
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: black;
+    font-size: 17.5px;
+    text-align: center;
+}
+
+.randomagain {
     a {
         text-decoration: none;
         color: white;
@@ -156,6 +171,26 @@ header {
         background-color: #9CE391;
         transition: background-color 0.15s ease;
     }
+}
+
+.btnn {
+    text-decoration: none;
+    color: white;
+    display: inline-flex;
+    padding: 10px;
+    
+    justify-content: center;
+    align-items: center;
+    background-color: #d54747;
+    border-radius: 25px;
+    cursor: pointer;
+    border: none;
+    
+}
+
+.btnn:hover {
+    background-color: #9CE391;
+    transition: background-color 0.15s ease;
 }
 
 .favorites-and-add-song {
@@ -262,6 +297,78 @@ header {
     background-color: #7bbd6c;
 }
 
+.navbar {
+    display: flex;
+    flex-direction: row;
+    padding-top: 0.1%;
+    padding-left: 3%;
+    padding-right: 3%;
+    gap: 1%;
+    background-color: #FFD1D1;
+    .pf {
+        display: flex;
+        flex-direction: row;
+        background-color: transparent;
+        .mooyoungimg {
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+            img {
+                height: 50px;
+                width: 50px;
+                object-fit: cover;
+                background-color: #D9D9D9;
+                border-radius: 100%;
+                border: none;
+            }
+        }
+        .name{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            font-size: 30px;
+            background-color: transparent;
+            padding-right: 50%;
+            white-space: nowrap;
+        }
+        .navv {
+            background-color: transparent;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            text-align: center;
+            align-items: center;
+            font-size: 20px;
+            background-color: transparent;
+            gap: 150%;
+            .home {
+                padding-left: 150%;
+                display: flex;
+                text-align: center;
+                align-items: center;
+                font-size: 20px;
+                background-color: #FFD1D1;
+            }
+            .setting {
+                display: flex;
+                text-align: center;
+                align-items: center;
+                font-size: 20px;
+                text-decoration: none;
+                gap: 10%;
+                background-color: #FFD1D1;
+            }
+        }
+    }
+    
+    p {
+        background-color: transparent;
+        border-radius: 25px;
+        padding: 20px;
+        color: white;
+    }
+}
 .flashes {
     list-style-type: none;
     padding: 0;

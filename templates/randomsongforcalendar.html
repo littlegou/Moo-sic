@@ -6,7 +6,7 @@
     <title>สุ่มเพลง</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/randomsong.css">
+    <link rel="stylesheet" href="../static/randomsongforcalendar.css">
     <script>
         function refreshPage() {
             location.reload();
@@ -99,12 +99,11 @@
                 </form>
 
                 <div class="row">
-                    <div class="randomagain">
-                        <a href="{{ url_for('randomsong', mood=mood, reason=reason, refresh=true) }}">สุ่มใหม่</a>
-                    </div>
-                    <div class="moodagain">
-                        <a href="{{ url_for('select_mood') }}">เลือก mood อีกครั้ง</a>
-                    </div>
+                    <form method="POST" class="inp" action="{{ url_for('randomsongforcalendar') }}">
+                        <input type="text" id="description" name="description" class="description"
+                            placeholder="บรรยายความรู้สึก" required>
+                        <a href="{{ url_for('calendar') }}"><button type="submit" class="btnn" name="submit_description">save และ กลับไปหน้าปฏิทิน</button></a>
+                    </form>
                 </div>
             </section>
         </div>

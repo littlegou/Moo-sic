@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+* {
+    font-family:"Itim", cursive;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+body {
+    background-color: #ffe692;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding: 10px 2rem;
+    background-color: #eea5a5;
+
+    .logo {
+        display: flex;
+        align-items: center;
+        background-color: #eea5a5;
+        gap: 1rem;
+        img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border: 1px solid black;
+            border-radius: 50%;
+            background-color: #D9D9D9;
+        }
+        p {
+            font-size: 24px;
+            background-color: #eea5a5;
+        }
+    }
+
+    .btn {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        background-color: #eea5a5;
+        .btn-home a, .btn-setting a {
+            font-size: 18px;
+            display: flex;
+            text-decoration: none;
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+            background-color: #eea5a5;
+            img, p {
+                background-color: #eea5a5;
+            }
+            img {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    }
+}
+
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    text-align: center;
+
+    h1 {
+        margin-bottom: 1rem;
+    }
+}
+
+
+.postit {
+    text-align: left;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px;
+    padding: 15px 20px;
+    line-height: 1.5;
+    max-width: 250px;
+    color: #000000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: inline-block;
+}
+
+.postit h2 , .postit a , .postit p {
+    background-color: transparent;
+    color: #eea5a5;
+}
+
+.timestamp {
+    font-size: 0.5em;
+    color: #999;
+    background-color: transparent;
+    position: absolute;
+    bottom: 0px;
+    right: 5px;
+    text-align: right;
+}
+
+.postit-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+.add-note {
+    background-color: #4caf50;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 100px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    justify-content: center;
+    border-radius: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    background-color: #f2c0c0;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 1000;
+
+    .popup-content {
+        padding: 20px;
+        position: relative;
+        justify-content: center;
+        width: 80%;
+
+        h2 {
+            margin-bottom: 16px;
+        }
+        .close {
+            color: #aaa;
+            position: absolute;
+            right: -15px;
+            top: 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .add-note-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            input, textarea {
+                width: 250px;
+            }
+            input {
+                color: #000000;
+                padding: 5px 10px;
+                border-radius: 5px;
+                border-style: none;
+            }
+            textarea {
+                padding: 5px 10px;
+                color: #000000;
+                height: 75px;
+                border-radius: 5px;
+                border-style: none;
+            }
+            button {
+                background-color: #FFA6A6;
+                width: 100px;
+                padding: 10px 10px;
+                border-style: none;
+                border-radius: 30px;
+                cursor: pointer;
+                transition: 0.15s;
+            }
+            button:hover {
+                background-color: #ea8989;
+            }
+        }
+    }
+}

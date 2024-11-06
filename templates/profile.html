@@ -6,18 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>my profile</title>
     <link rel="stylesheet" href="/static/profile.css">
+    <script>
+        function logout() {
+            alert("You have logged out.");
+            closePopup('settings');
+        }
+    </script>
 </head>
 
 <body>
     <nav>
-        <div class="nav-item-container">
-            <div class="logoutbtn">
-                <a href="{{ url_for('logout') }}">Log out</a>
-            </div>
-            <div class="select">
-                <a href="{{ url_for('select_mood') }}">เลือก mood อีกครั้ง</a>
-            </div>
-        </div>
+        <ul>
+            <li class="logo">
+                <img src="{{ url_for('static', filename='images/mooyoung.PNG') }}" alt="profile-img">
+                <p>MOO-SIC</p>
+            </li>
+
+            <li class="btn">
+                <div class="btn-home">
+                    <a href="{{ url_for('m') }}">
+                        <img src="../static/images/icons8-home-50.png" alt="">
+                        <p>Home</p>
+                    </a>
+                </div>
+                <div class="btn-setting">
+                    <a href="{{ url_for('settings') }}">
+                        <img src="../static/images/icons8-setting-50.png" alt="">
+                        <p>Settings</p>
+                    </a>
+                </div>
+            </li>
+        </ul>
     </nav>
     <header>
         <div class="mooyoungimg">

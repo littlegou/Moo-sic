@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Karaoke</title>
+    <link rel="stylesheet" href="../static/karaoke.css">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li class="logo">
+                <img src="{{ url_for('static', filename='images/mooyoung.PNG') }}" alt="profile-img">
+                <p>MOO-SIC</p>
+            </li>
+
+            <li class="btn">
+                <div class="btn-home">
+                    <a href="{{ url_for('m') }}">
+                        <img src="../static/images/icons8-home-50.png" alt="">
+                        <p>Home</p>
+                    </a>
+                </div>
+
+                <div class="btn-setting">
+                    <a href="{{ url_for('settings') }}">
+                        <img src="../static/images/icons8-setting-50.png" alt="">
+                        <p>Settings</p>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <h2>Now Playing: {{ song_name }}</h2>
+
+    <div class="wrapper">
+        <div id="video-container">
+            <div id="player"></div>
+        </div>
+
+        <div id="current-line">
+            {% for line, timing in lyrics_with_timings %}
+            <p data-timing="{{ timing }}">{{ line }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="back-btn">
+        <a href="{{ url_for('selectsongforkaraoke') }}">เลือกเพลงใหม่</a>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        var player;
+        var currentLyric = null;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                videoId: '{{ youtube_video_id }}',
+                events: {
+                    'onReady': onPlayerReady,
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            setInterval(syncLyrics, 50);
+        }
+
+        function syncLyrics() {
+            var currentTime = player.getCurrentTime();
+            var lyrics = document.querySelectorAll('#current-line p');
+
+            lyrics.forEach(function (line) {
+                var timing = line.getAttribute('data-timing').split(',');
+                var start = parseFloat(timing[0]);
+                var end = parseFloat(timing[1]);
+
+                if (currentTime >= start && currentTime < end) {
+                    if (currentLyric !== line) {
+                        if (currentLyric) currentLyric.style.display = 'none';
+                        line.style.display = 'block';
+                        currentLyric = line;
+                    }
+                } else {
+                    line.style.display = 'none';
+                }
+            });
+        }
+        if (window.YT && YT.Player) {
+            YT = null;
+            var script = document.createElement('script');
+            script.src = "https://www.youtube.com/iframe_api";
+            document.head.appendChild(script);
+        }
+    </script>
+</body>
+
+</html>

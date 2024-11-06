@@ -1,47 +1,73 @@
 @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
 * {
     font-family:"Itim", cursive;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     background-color: #F8E3A1;
+    color: #ffffff;
+    letter-spacing: 1px;
 }
 
-nav {
+nav ul {
     display: flex;
     flex-direction: row;
-    margin-top: 32px;
-    margin-bottom: 20px;
-    padding: 5px 20px;
-    justify-content: end;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding: 10px 2rem;
+    background-color: #eea5a5;
 
-    .nav-item-container{
+    .logo {
         display: flex;
-        column-gap: 15px;
-        .logoutbtn ,.select {
-            a {
-                border-radius: 25px;
-                padding: 20px;
-                background-color: #f38383;
-                color: white;
-                text-decoration: none;
-                background-color: #f38383;
+        align-items: center;
+        background-color: #eea5a5;
+        gap: 1rem;
+        img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border: 1px solid black;
+            border-radius: 50%;
+            background-color: #D9D9D9;
+        }
+        p {
+            font-size: 24px;
+            background-color: #eea5a5;
+        }
+    }
+
+    .btn {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        background-color: #eea5a5;
+        .btn-home a, .btn-setting a {
+            font-size: 18px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+            background-color: #eea5a5;
+            img, p {
+                background-color: #eea5a5;
             }
-            a:hover {
-                background-color: #81d074;
-                transition: 0.15s;
+            img {
+                width: 45px;
+                height: 45px;
             }
         }
     }
 }
-
 
 header {
     display: flex;
     flex-direction: row;
     padding: 30px;
     padding-top: 0;
-    margin-top: 10px;
+    margin-top: 20px;
     padding-left: 50px;
     gap: 50px;
 
@@ -85,31 +111,6 @@ section {
         font-size: 30px;
     }
 }
-/* 
-
--------------- เวอร์ชันเก่า ---------------
-.container {
-    margin-top: 30px;
-    margin-left: 60px;
-    margin-right: 60px;
-    li {
-        margin: 10px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        p {
-            background-color: #f38383;
-            border-radius: 25px;
-            padding: 18px;
-            color: white;
-            font-size: 20px;
-        }
-        img {
-            width: 50px;
-        }
-    }
-} */
 
 .container {
     margin-top: 30px;
@@ -150,4 +151,81 @@ section {
     a {
         background-color: #F8E3A1;
     }
+}
+
+.popup-background {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+}
+.popup-box {
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    height: auto;
+    text-align: right;
+    box-shadow: transparent;
+}
+.popup-box h2 {
+    margin-top: 0;
+    text-align: center;
+}
+.close-btn {
+    margin-top: 10px;
+    cursor: pointer;
+    color: #ffffff;
+    border: none;
+    justify-content: center;
+}
+.settings-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+}
+.settings-option {
+    margin: 5px 0;
+    color: #f38383;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.settings-option-logout {
+    margin: 5px 0;
+    color: #ff0000;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+label {
+    margin-bottom: 5px;
+}
+input {
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 100%;
+}
+.popup-background {
+    display: none;
+    position: fixed;
+    top: 25%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
 }
