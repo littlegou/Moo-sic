@@ -2,12 +2,13 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from DB import get_db_connection
 import os
 import re
+from karaoke import songs_karaoke
 from werkzeug.security import generate_password_hash, check_password_hash
 
 connection = get_db_connection()
 
-template_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'templates')
-static_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static')
+template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+static_dir = os.path.join(os.path.dirname(__file__), 'static')
 app = Flask(__name__, template_folder=template_dir,static_folder=static_dir)
 app.secret_key = 'your_secret_key'
 
@@ -101,22 +102,14 @@ def recommend():
 
 @app.route('/selectsongforkaraoke')
 def selectsongforkaraoke():
-    cursor = connection.cursor(buffered=True)
-    cursor.execute("SELECT * FROM karaoke")
-    songs_karaoke = cursor.fetchall()
-    cursor.close()
     return render_template('selectsongforkaraoke.html', songs_karaoke=songs_karaoke)
 
 @app.route('/karaoke')
 def karaoke():
     song_id = request.args.get('song_id')
-    cursor = connection.cursor(buffered=True)
-    cursor.execute("SELECT * FROM karaoke WHERE song_id = %s", (song_id,))
-    song = cursor.fetchall()
-    cursor.close()
-    connection.commit()
-    if song:
-        return render_template('karaoke.html',song_name=song[0][1],artist = song[0][2],youtube_video_id=song[0][4],lyrics_with_timings=eval(song[0][3]))
+    selected_song = next((song for song in songs_karaoke if song['song_id'] == song_id))
+    if selected_song:
+        return render_template('karaoke.html',song_name=selected_song['title'],artist = selected_song['artist'],youtube_video_id=selected_song['youtube_id'],lyrics_with_timings=selected_song['lyrics_with_timings'])
 
 @app.route('/login', methods =['GET', 'POST'])
 def login():

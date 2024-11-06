@@ -36,7 +36,7 @@
         <label for="song-select">เลือกเพลง:</label>
         <select id="song-select" name="song_id">
             {% for song in songs_karaoke %}
-                <option value="{{ song[0] }}">{{ song[1] }} - {{ song[2] }}</option>
+                <option value="{{ song['song_id'] }}">{{ song['title'] }} - {{ song['artist'] }}</option>
             {% endfor %}
         </select>
         <button type="submit">Go to Karaoke</button>
@@ -47,7 +47,7 @@
         <h3>Available Songs</h3>
         <ul>
             {% for song in songs_karaoke %}
-                <li>{{ song[1] }} - {{ song[2] }}</li>
+                <li>{{ song['title'] }} - {{ song['artist'] }}</li>
             {% endfor %}
         </ul>
     </div>
