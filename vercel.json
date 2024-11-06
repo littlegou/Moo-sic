@@ -2,12 +2,12 @@
     "version": 2,
     "builds": [
       {
-        "src": "database/app.py",
+        "src": "app.py",
         "use": "@vercel/python"
       }
     ],
     "routes": [
-      { "src": "/(.*)", "dest": "database/app.py" }
+      { "src": "/(.*)", "dest": "app.py" }
     ]
   }
   
