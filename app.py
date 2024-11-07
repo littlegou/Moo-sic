@@ -16,104 +16,6 @@ app.secret_key = 'your_secret_key'
 def main():
     return render_template('index.html')
 
-@app.route('/m')
-def m():
-    return render_template('m.html')
-
-@app.route('/settings', methods =['GET', 'POST'])
-def settings():
-    usn = session.get('username')
-    cursor = connection.cursor(buffered=True)
-    cursor.execute('SELECT email FROM users WHERE username = %s', (usn,))
-    ema = cursor.fetchone()
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        email = request.form['email']
-        if 'username' in request.form:
-            cursor = connection.cursor(buffered=True)
-            cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
-            accusn = cursor.fetchone()
-            if accusn and username:
-                flash('Username already exists!')
-            elif username:
-                update_query = ' UPDATE users SET username = %s WHERE username = %s'
-                cursor = connection.cursor(buffered=True)
-                cursor.execute(update_query, (username, usn))
-                connection.commit()
-                cursor.close()
-                session['username'] = username
-                flash("Username updated successfully.")
-        if 'password' in request.form:
-            if 0 < len(password) < 8 :
-                flash('Please fill your password with more than 8 letters!')
-            elif len(password) >= 8:
-                hashed_password = generate_password_hash(password)
-                print(hashed_password)
-                cursor = connection.cursor(buffered=True)
-                update_query = ' UPDATE users SET password = %s WHERE username = %s'
-                cursor.execute(update_query, (hashed_password, usn))
-                connection.commit()
-                cursor.close()
-                flash("Password updated successfully.")
-        if 'email' in request.form :
-            cursor = connection.cursor(buffered=True)
-            cursor.execute('SELECT * FROM users WHERE email = %s', (email,))
-            em = cursor.fetchone()
-            if em and email:
-                flash('Email already exists!')
-            elif not re.match(r'[^@]+@[^@]+\.[^@]+', email) and email:
-                flash('Invalid email address!')
-            elif email:
-                update_query = ' UPDATE users SET email = %s WHERE username = %s'
-                cursor = connection.cursor(buffered=True)
-                cursor.execute(update_query, (email, usn))
-                connection.commit()
-                cursor.close()
-                flash("Email updated successfully.")
-        return redirect(url_for('settings'))
-    return render_template('settings.html',ema=ema[0],usn=usn)
-
-@app.route('/recommend', methods =['GET', 'POST'])
-def recommend():
-    if request.method == 'POST':
-        name = request.form['name']
-        song_name = request.form['song_name']
-        artist = request.form['artist']
-        yt = request.form['yt']
-        reason = request.form['reason']
-
-        if not (name and song_name and artist and yt and reason):
-            flash('กรุณากรอกข้อมูลให้ครบถ้วน', 'danger')
-            return redirect(url_for('recommend'))
-
-        cursor = connection.cursor(buffered=True)
-        cursor.execute("INSERT INTO postits(name, song_name, artist, yt, reason) VALUES(%s, %s, %s, %s, %s)",
-                    (name, song_name, artist, yt, reason))
-        connection.commit()
-        cursor.close()
-
-        flash('เพิ่มบันทึกเพลงสำเร็จ!', 'success')
-        return redirect(url_for('recommend'))
-
-    cursor = connection.cursor(buffered=True)
-    cursor.execute("SELECT * FROM postits")
-    postits = cursor.fetchall()
-
-
-    return render_template('recommend.html', postits=postits)
-
-@app.route('/selectsongforkaraoke')
-def selectsongforkaraoke():
-    return render_template('selectsongforkaraoke.html', songs_karaoke=songs_karaoke)
-
-@app.route('/karaoke')
-def karaoke():
-    song_id = request.args.get('song_id')
-    selected_song = next((song for song in songs_karaoke if song['song_id'] == song_id))
-    if selected_song:
-        return render_template('karaoke.html',song_name=selected_song['title'],artist = selected_song['artist'],youtube_video_id=selected_song['youtube_id'],lyrics_with_timings=selected_song['lyrics_with_timings'])
-
 @app.route('/login', methods =['GET', 'POST'])
 def login():
     mesage = ''
@@ -169,6 +71,10 @@ def sign_up():
     elif request.method == 'POST':
         mesage = 'Please fill out the form !'
     return render_template('signup.html', mesage = mesage)
+
+@app.route('/m')
+def m():
+    return render_template('m.html')
 
 @app.route('/select_mood', methods=['GET', 'POST'])
 def select_mood():
@@ -401,17 +307,6 @@ def randomsong():
     current_song = session.get('current_song')
     return render_template('randomsong.html', songs=current_song[0], favorite_songs=favorite_songs)
 
-@app.route('/profile')
-def profile():
-    if 'username' in session:
-        username = session['username']
-        
-        cursor = connection.cursor(buffered=True)
-        cursor.execute('SELECT Song, Artists, yt FROM favorites WHERE username = %s', (username,))
-        songs = cursor.fetchall()
-        cursor.close()
-        return render_template('profile.html', username=username, songs=songs)
-
 @app.route('/calendar', methods=['GET', 'POST'])
 def calendar():
     if 'username' in session:
@@ -505,6 +400,111 @@ def events():
             events = None
         return jsonify(events)
     return jsonify([])
+
+@app.route('/settings', methods =['GET', 'POST'])
+def settings():
+    usn = session.get('username')
+    cursor = connection.cursor(buffered=True)
+    cursor.execute('SELECT email FROM users WHERE username = %s', (usn,))
+    ema = cursor.fetchone()
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        email = request.form['email']
+        if 'username' in request.form:
+            cursor = connection.cursor(buffered=True)
+            cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
+            accusn = cursor.fetchone()
+            if accusn and username:
+                flash('Username already exists!')
+            elif username:
+                update_query = ' UPDATE users SET username = %s WHERE username = %s'
+                cursor = connection.cursor(buffered=True)
+                cursor.execute(update_query, (username, usn))
+                connection.commit()
+                cursor.close()
+                session['username'] = username
+                flash("Username updated successfully.")
+        if 'password' in request.form:
+            if 0 < len(password) < 8 :
+                flash('Please fill your password with more than 8 letters!')
+            elif len(password) >= 8:
+                hashed_password = generate_password_hash(password)
+                print(hashed_password)
+                cursor = connection.cursor(buffered=True)
+                update_query = ' UPDATE users SET password = %s WHERE username = %s'
+                cursor.execute(update_query, (hashed_password, usn))
+                connection.commit()
+                cursor.close()
+                flash("Password updated successfully.")
+        if 'email' in request.form :
+            cursor = connection.cursor(buffered=True)
+            cursor.execute('SELECT * FROM users WHERE email = %s', (email,))
+            em = cursor.fetchone()
+            if em and email:
+                flash('Email already exists!')
+            elif not re.match(r'[^@]+@[^@]+\.[^@]+', email) and email:
+                flash('Invalid email address!')
+            elif email:
+                update_query = ' UPDATE users SET email = %s WHERE username = %s'
+                cursor = connection.cursor(buffered=True)
+                cursor.execute(update_query, (email, usn))
+                connection.commit()
+                cursor.close()
+                flash("Email updated successfully.")
+        return redirect(url_for('settings'))
+    return render_template('settings.html',ema=ema[0],usn=usn)
+
+@app.route('/recommend', methods =['GET', 'POST'])
+def recommend():
+    if request.method == 'POST':
+        name = request.form['name']
+        song_name = request.form['song_name']
+        artist = request.form['artist']
+        yt = request.form['yt']
+        reason = request.form['reason']
+
+        if not (name and song_name and artist and yt and reason):
+            flash('กรุณากรอกข้อมูลให้ครบถ้วน', 'danger')
+            return redirect(url_for('recommend'))
+
+        cursor = connection.cursor(buffered=True)
+        cursor.execute("INSERT INTO postits(name, song_name, artist, yt, reason) VALUES(%s, %s, %s, %s, %s)",
+                    (name, song_name, artist, yt, reason))
+        connection.commit()
+        cursor.close()
+
+        flash('เพิ่มบันทึกเพลงสำเร็จ!', 'success')
+        return redirect(url_for('recommend'))
+
+    cursor = connection.cursor(buffered=True)
+    cursor.execute("SELECT * FROM postits")
+    postits = cursor.fetchall()
+
+
+    return render_template('recommend.html', postits=postits)
+
+@app.route('/selectsongforkaraoke')
+def selectsongforkaraoke():
+    return render_template('selectsongforkaraoke.html', songs_karaoke=songs_karaoke)
+
+@app.route('/karaoke')
+def karaoke():
+    song_id = request.args.get('song_id')
+    selected_song = next((song for song in songs_karaoke if song['song_id'] == song_id))
+    if selected_song:
+        return render_template('karaoke.html',song_name=selected_song['title'],artist = selected_song['artist'],youtube_video_id=selected_song['youtube_id'],lyrics_with_timings=selected_song['lyrics_with_timings'])
+    
+@app.route('/profile')
+def profile():
+    if 'username' in session:
+        username = session['username']
+        
+        cursor = connection.cursor(buffered=True)
+        cursor.execute('SELECT Song, Artists, yt FROM favorites WHERE username = %s', (username,))
+        songs = cursor.fetchall()
+        cursor.close()
+        return render_template('profile.html', username=username, songs=songs)
 
 @app.route('/logout')
 def logout():
