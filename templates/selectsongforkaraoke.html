@@ -42,9 +42,8 @@
         <button type="submit">Go to Karaoke</button>
     </form>
 
-    <!-- New section to display all available songs -->
     <div id="all-songs">
-        <h3>Available Songs</h3>
+        <h3>เพลงทั้งหมด</h3>
         <ul>
             {% for song in songs_karaoke %}
                 <li>{{ song['title'] }} - {{ song['artist'] }}</li>

@@ -23,7 +23,9 @@ def m():
 @app.route('/settings', methods =['GET', 'POST'])
 def settings():
     usn = session.get('username')
-    print(session)
+    cursor = connection.cursor(buffered=True)
+    cursor.execute('SELECT email FROM users WHERE username = %s', (usn,))
+    ema = cursor.fetchone()
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -69,7 +71,8 @@ def settings():
                 connection.commit()
                 cursor.close()
                 flash("Email updated successfully.")
-    return render_template('settings.html')
+        return redirect(url_for('settings'))
+    return render_template('settings.html',ema=ema[0],usn=usn)
 
 @app.route('/recommend', methods =['GET', 'POST'])
 def recommend():
